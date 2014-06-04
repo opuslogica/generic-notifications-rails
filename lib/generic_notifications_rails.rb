@@ -1,0 +1,2 @@
+module GenericNotificationsRails
+end
