@@ -7,17 +7,17 @@ require "generic_notifications_rails/version"
 Gem::Specification.new do |s|
   s.name        = "generic_notifications_rails"
   s.version     = GenericNotificationsRails::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of GenericNotificationsRails."
-  s.description = "TODO: Description of GenericNotificationsRails."
-  s.license     = "MIT"
+  s.authors     = ["Daniel Staudigel"]
+  s.email       = ["dstaudigel@gmail.com"]
+  s.homepage    = "http://opuslogica.com/"
+  s.summary     = "GenericNotificationsRails: Adds the ability to create/dispatch notifications to people."
+  s.description = "GenericNotificationsRails: See summary."
+  s.license     = "OLI"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "rails", "~> 4.1.1"
+  s.add_dependency "rails", "~> 4.0.0"
 
   s.add_development_dependency "sqlite3"
 end
