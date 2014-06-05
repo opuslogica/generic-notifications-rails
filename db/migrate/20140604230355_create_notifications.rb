@@ -5,8 +5,10 @@ class CreateNotifications < ActiveRecord::Migration
       t.string :message
       t.string :payload_json
 
-      t.references :person, index:true
+      t.references :person, index: true
       t.references :type, index: true
+      t.references :associated, index: true
+      t.string :associated_type
 
       t.timestamps
     end
