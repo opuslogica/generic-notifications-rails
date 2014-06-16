@@ -8,14 +8,21 @@ class Notification < ActiveRecord::Base
   after_save :deliver
   
   def deliver
-    if person.devices.length > 0
-      device_delivery = GenericNotificationsRails::Delivery::Device.new
-      person.devices.each do |d|
-        device_delivery.deliver self,d
+    begin
+      if person.devices.length > 0
+        device_delivery = GenericNotificationsRails::Delivery::Device.new
+        person.devices.each do |d|
+          device_delivery.deliver self,d
+        end
+      else
+        email_deliver = GenericNotificationsRails::Delivery::Email.new
+        email_deliver.deliver self,person.emails.first
       end
-    else
-      email_deliver = GenericNotificationsRails::Delivery::Email.new
-      email_deliver.deliver self,person.emails.first
+      
+      self.delivered_at = DateTime.now
+      save
+    rescue SocketError => x
+      logger.error "Error delivering notification: #{x}"
     end
   end
 
