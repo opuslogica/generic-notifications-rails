@@ -5,18 +5,18 @@ class Notification < ActiveRecord::Base
   belongs_to :person
   
   belongs_to :associated, polymorphic: true
-  after_save :deliver
+  after_create :deliver
   
   def deliver
     begin
       if person.devices.length > 0
         device_delivery = GenericNotificationsRails::Delivery::Device.new
         person.devices.each do |d|
-          device_delivery.deliver self,d
+          device_delivery.deliver(self, d)
         end
       else
         email_deliver = GenericNotificationsRails::Delivery::Email.new
-        email_deliver.deliver self,person.emails.first
+        email_deliver.deliver(self, person.emails.first)
       end
       
       self.delivered_at = DateTime.now
