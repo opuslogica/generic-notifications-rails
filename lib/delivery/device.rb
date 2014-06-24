@@ -5,7 +5,8 @@ module GenericNotificationsRails
   module Delivery
     class Device < Base
       def deliver(notification,device)
-        GenericNotificationsRails::OliPusher.send_notification([ device.identifier ],notification.title,notification.payload)
+        options = { badge: notification.person.notification_badge_count }
+        GenericNotificationsRails::OliPusher.send_notification([ device.identifier ],notification.title,notification.payload , options)
       end
     end
   end

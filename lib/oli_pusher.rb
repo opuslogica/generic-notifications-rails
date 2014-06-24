@@ -18,6 +18,7 @@ module GenericNotificationsRails
       request = Net::HTTP::Post.new(uri.path)
       request.content_type = "application/json"
       options = options.merge({ :alert => alert_text }) if alert_text
+      options = options.merge({ :badge => options[:badge] }) if options[:badge]
       options = options.merge({ :client_id => $client_id }) if $client_id
       request.body = { :clients => clients, :options => options, :data => data }.to_json({})
       response = Net::HTTP.start(uri.host, uri.port) { |http| http.request(request) }

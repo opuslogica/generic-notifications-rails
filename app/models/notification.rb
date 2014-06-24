@@ -5,8 +5,15 @@ class Notification < ActiveRecord::Base
   belongs_to :person
   
   belongs_to :associated, polymorphic: true
+
+  after_create :increment_badge
   after_create :deliver
   
+  def increment_badge
+    person.notification_badge_count = (person.notification_badge_count||0) + 1
+    person.save
+  end
+
   def deliver
     begin
       if person.devices.length > 0
