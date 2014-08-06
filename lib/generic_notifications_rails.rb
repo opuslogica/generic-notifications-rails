@@ -1,3 +1,4 @@
+require "active_support/dependencies"
 require "generic_notifications_rails/engine"
 require "generic_notifications_rails/config"
 require "delivery/email"
