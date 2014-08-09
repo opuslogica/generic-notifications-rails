@@ -6,7 +6,10 @@ class CreateNotifications < ActiveRecord::Migration
       t.string :payload_json
 
       t.references :person, index: true
-      t.references :notification_type, index: true
+#
+#     t.references :notification_type, index: true
+#
+      t.integer :type_id, references: :notification_types, index: true
       t.integer :associated_id, index: false, foreign_key: false
       t.string :associated_type
 

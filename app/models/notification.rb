@@ -1,7 +1,7 @@
 require 'json'
 
 class Notification < ActiveRecord::Base
-  belongs_to :notification_type
+  belongs_to :notification_type, foreign_key: :type_id
   belongs_to :person
   
   belongs_to :associated, polymorphic: true
