@@ -1,7 +1,7 @@
 require 'json'
 
 class Notification < ActiveRecord::Base
-  belongs_to :type
+  belongs_to :notification_type
   belongs_to :person
   
   belongs_to :associated, polymorphic: true
@@ -29,15 +29,15 @@ class Notification < ActiveRecord::Base
       self.delivered_at = DateTime.now
       save
     rescue SocketError => x
-      logger.error "Error delivering notification: #{x}"
+      logger.error("Error delivering notification: #{x}")
     end
   end
 
   def payload
-    JSON.parse payload_json rescue nil
+    JSON.parse(payload_json) rescue nil
   end
 
-  def payload= obj
-    self.payload_json = (obj&&obj.to_json) || nil
+  def payload=(obj)
+    self.payload_json = (obj and obj.to_json) || nil
   end
 end
