@@ -7,8 +7,8 @@ require "generic_notifications_rails/version"
 Gem::Specification.new do |s|
   s.name        = "generic_notifications_rails"
   s.version     = GenericNotificationsRails::VERSION
-  s.authors     = ["Daniel Staudigel"]
-  s.email       = ["dstaudigel@gmail.com"]
+  s.authors     = ["Daniel Staudigel", "Brian J. Fox"]
+  s.email       = ["dstaudigel@opuslogica.com", "bfox@opuslogica.com"]
   s.homepage    = "http://opuslogica.com/"
   s.summary     = "GenericNotificationsRails: Adds the ability to create/dispatch notifications to people."
   s.description = "GenericNotificationsRails: See summary."

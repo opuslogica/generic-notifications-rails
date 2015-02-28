@@ -16,8 +16,11 @@ module GenericNotificationsRails
         @email_subject_block = blk if blk
         @email_subject_block
       end
-    
 
+      def pusher_base(url=nil)
+        @pusher_base = url if url
+        @pusher_base
+      end
     end
   end
 end
