@@ -24,7 +24,7 @@ module GenericNotificationsRails
     end
 
     def self.send_notification(clients, alert_text, data, options = {})
-      uri = URI.parse(self.pusher_many);
+      uri = URI.parse(self.pusher_many)
       request = Net::HTTP::Post.new(uri.path)
       request.content_type = "application/json"
       options = options.merge({ :alert => alert_text }) if alert_text
