@@ -1,6 +1,6 @@
 module GenericNotificationsRails
   class OliPusher
-    PUSHER_BASE = "http://pusher.opuslogica.com"
+    PUSHER_BASE = "https://pusher.opuslogica.com"
     PUSHER_ONE  = PUSHER_BASE + "/client/IDENTIFIER/send"
     PUSHER_MANY = PUSHER_BASE + "/send"
     
