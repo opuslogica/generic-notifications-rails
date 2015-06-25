@@ -25,13 +25,17 @@ module GenericNotificationsRails
 
     def self.send_notification(clients, alert_text, data, options = {})
       uri = URI.parse(self.pusher_many)
-      request = Net::HTTP::Post.new(uri.path)
-      request.content_type = "application/json"
+
       options = options.merge({ :alert => alert_text }) if alert_text
       options = options.merge({ :badge => options[:badge] }) if options[:badge]
       options = options.merge({ :client_id => $client_id }) if $client_id
-      request.body = { :clients => clients, :options => options, :data => data }.to_json({})
-      response = Net::HTTP.start(uri.host, uri.port) { |http| http.request(request) }
+      body = { :clients => clients, :options => options, :data => data }.to_json({})
+
+      http = Net::HTTP.new(uri.host, uri.port)
+
+      http.use_ssl = true if uri.scheme == 'https'
+
+      response = http.post_form(uri, body)
     end
   end
 end
